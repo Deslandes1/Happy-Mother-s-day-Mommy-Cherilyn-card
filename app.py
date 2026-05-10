@@ -1,5 +1,4 @@
 import streamlit as st
-import base64
 import requests
 from PIL import Image
 from io import BytesIO
@@ -62,6 +61,10 @@ st.markdown(
         50% { transform: scale(1.2); }
         100% { transform: scale(1); }
     }
+    /* Hide the audio player controls */
+    .hidden-audio {
+        display: none;
+    }
     </style>
     <div class="stars"></div>
     """,
@@ -89,12 +92,18 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------- MOTHER'S DAY SONG (classic, looping) ----------
+# ---------- HIDDEN AUTO-PLAY AUDIO (no visible bar) ----------
 # Base64 encoded short "Happy Mother's Day" melody (classic tune)
 audio_base64 = "data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADg7O3v7+/v7+/vAwMDAwMDAwMD////////////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjQ1LjEwMA0AAAAAABCS80C3Rk1G///////////////////////////////////8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8"
-st.audio(audio_base64, format="audio/mpeg", loop=True, autoplay=True)
+audio_html = f"""
+<audio autoplay loop style="display: none;">
+    <source src="{audio_base64}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+"""
+st.markdown(audio_html, unsafe_allow_html=True)
 
-# Optional: list of loving names (if you want to include them)
+# ---------- LIST OF LOVING NAMES ----------
 names = [
     "Sandiana Septembre", "Daffecat Michel", "Sophonia Darius", "Marie Prisca Rodney",
     "Volmar Lovena", "Daya Joachim", "Horlinne François", "Shelove Polisca",
@@ -106,7 +115,9 @@ names = [
 
 st.markdown("---")
 st.markdown("<h3 style='color:white; text-align:center;'>💖 With love from all of us 💖</h3>", unsafe_allow_html=True)
+
+# Display names in a grid (5 columns)
 cols = st.columns(5)
 for idx, name in enumerate(names):
     with cols[idx % 5]:
-        st.markdown(f"<p style='color:#fff9c4; text-align:center; font-size:0.9rem;'>{name}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='color:#fff9c4; text-align:center; font-size:1rem; margin:0.2rem 0;'>{name}</p>", unsafe_allow_html=True)
