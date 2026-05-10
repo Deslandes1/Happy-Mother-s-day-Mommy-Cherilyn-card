@@ -107,7 +107,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Generate random stars using JavaScript injected into the page
+# Generate random stars
 star_js = """
 <script>
 (function() {
@@ -138,13 +138,14 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 # Title
 st.markdown('<div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>', unsafe_allow_html=True)
 
-# --- CORRECTED RAW IMAGE URL (direct from GitHub) ---
+# --- CORRECT RAW URL (not the blob URL) ---
 image_raw_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/main/cherylenn.jpeg"
 
 try:
     st.image(image_raw_url, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
 except Exception as e:
-    st.warning(f"⚠️ Could not load image. Please verify the raw image URL. Error: {e}")
+    st.error(f"❌ Image could not be loaded. Please check that the file exists at:\n`{image_raw_url}`")
+    st.info("Make sure the image is in the main branch of your repository and that the filename is exactly 'cherylenn.jpeg' (case‑sensitive).")
 
 # ---------- LIST OF LOVING NAMES ----------
 names = [
@@ -166,7 +167,7 @@ st.markdown('<div class="heart">❤️❤️❤️</div>', unsafe_allow_html=Tru
 st.markdown("<h2 style='color:white;'>We love you and celebrate you today!</h2>", unsafe_allow_html=True)
 st.markdown(f"<p style='color:white; font-size:1.2rem;'>📅 {datetime.now().strftime('%B %d, %Y')}</p>", unsafe_allow_html=True)
 
-# ---------- BACKGROUND MUSIC (Classic Happy Birthday Song) ----------
+# ---------- BACKGROUND MUSIC (optional) ----------
 st.markdown("---")
 st.markdown("<h3 style='color:white;'>🎵 Listen to a classic Happy Birthday song 🎵</h3>", unsafe_allow_html=True)
 
@@ -188,7 +189,7 @@ try:
     st.markdown(audio_html, unsafe_allow_html=True)
     st.caption("🎶 If the music doesn’t play automatically, click the ▶️ button above. 🎶")
 except Exception:
-    st.warning("🎧 Please add a Happy Birthday song file named 'happy_birthday_song.mp3' to this folder.")
+    st.warning("🎧 Optional: Add a Happy Birthday song file named 'happy_birthday_song.mp3' to this folder.")
 
 # Extra love note
 st.markdown(
