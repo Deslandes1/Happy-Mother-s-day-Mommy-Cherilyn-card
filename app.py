@@ -94,6 +94,14 @@ st.markdown(
         50% { transform: scale(1.2); }
         100% { transform: scale(1); }
     }
+    .photo-caption {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #fff9c4;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 5px #ffaa00;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -130,11 +138,13 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 # Title
 st.markdown('<div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>', unsafe_allow_html=True)
 
-# Image (place your picture in the same folder as app.py, named "mommy_cherilyn.jpg")
+# Image from GitHub URL
+image_url = "https://github.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/blob/main/cherylenn.jpeg?raw=true"
 try:
-    st.image("mommy_cherilyn.jpg", caption="💖 Mommy Cherilyn 💖", use_container_width=True)
-except:
-    st.warning("📸 Please add a picture named 'mommy_cherilyn.jpg' to this folder.")
+    st.image(image_url, use_container_width=True)
+    st.markdown('<div class="photo-caption">💖 Mommy Cherilyn – Our Beautiful Queen 💖</div>', unsafe_allow_html=True)
+except Exception as e:
+    st.warning(f"⚠️ Unable to load the image. Please check the URL. Error: {e}")
 
 # ---------- LIST OF LOVING NAMES ----------
 # Names provided by the user
@@ -179,7 +189,7 @@ try:
     </script>
     """
     st.markdown(audio_html, unsafe_allow_html=True)
-    st.caption("🎶 If the music doesn’t play automatically, click the ▶️ button above. 🎶")
+    st.caption("🎶 If the music doesn't play automatically, click the ▶️ button above. 🎶")
 except Exception as e:
     st.warning("🎧 Please add a Happy Birthday song file named 'happy_birthday_song.mp3' to this folder (or update the file name in the code).")
 
