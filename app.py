@@ -1,6 +1,7 @@
 import streamlit as st
 import base64
 from datetime import datetime
+import os
 
 st.set_page_config(
     page_title="Happy Birthday, Mommy Cherilyn!",
@@ -138,14 +139,14 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 # Title
 st.markdown('<div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>', unsafe_allow_html=True)
 
-# --- CORRECT RAW URL (not the blob URL) ---
-image_raw_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/main/cherylenn.jpeg"
+# --- LOCAL IMAGE FILE (must be in same folder as app.py) ---
+image_filename = "cherylenn.jpeg"
 
-try:
-    st.image(image_raw_url, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
-except Exception as e:
-    st.error(f"❌ Image could not be loaded. Please check that the file exists at:\n`{image_raw_url}`")
-    st.info("Make sure the image is in the main branch of your repository and that the filename is exactly 'cherylenn.jpeg' (case‑sensitive).")
+if os.path.exists(image_filename):
+    st.image(image_filename, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
+else:
+    st.error(f"❌ Image file '{image_filename}' not found. Please upload the picture to the repository.")
+    st.info("Make sure the file name is exactly 'cherylenn.jpeg' (case‑sensitive) and that it is in the same folder as app.py.")
 
 # ---------- LIST OF LOVING NAMES ----------
 names = [
