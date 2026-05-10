@@ -4,14 +4,13 @@ import requests
 from PIL import Image
 from io import BytesIO
 
-# ------------------------- Page Configuration -------------------------
 st.set_page_config(
-    page_title="Happy Birthday, Mommy Cherilyn!",
-    page_icon="🎂",
-    layout="wide",
+    page_title="Happy Mother's Day, Mommy Cherylenn!",
+    page_icon="🌸",
+    layout="wide"
 )
 
-# ------------------------- Styling: Blue Shining with Stars -------------------------
+# ========== STYLING: BLUE SHINING WITH STARS ==========
 st.markdown(
     """
     <style>
@@ -69,31 +68,45 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ------------------------- Fetch and Display Image -------------------------
+# ---------- DISPLAY IMAGE (raw GitHub URL) ----------
 image_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/main/cherylenn.jpeg"
 try:
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
-    st.image(img, caption="💖 Mommy Cherilyn 💖", use_container_width=False, width=400)
+    st.image(img, caption="💖 Mommy Cherylenn 💖", width=400)
 except Exception as e:
     st.error(f"Could not load the image. Please check the file name or path.\n\n{str(e)}")
 
-# ------------------------- Celebratory Text -------------------------
+# ---------- MOTHER'S DAY MESSAGE ----------
 st.markdown(
     """
     <div class="card-container">
-        <div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>
+        <div class="title">🌸 Happy Mother's Day, Mommy Cherylenn! 🌸</div>
         <div class="heart">❤️❤️❤️</div>
-        <p style="font-size:1.2rem; color:white;">We love you and celebrate you today!</p")
+        <p style="font-size:1.2rem; color:white;">We love you and celebrate you today!</p>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-# ------------------------- Auto‑play Looping Music -------------------------
-# Simple MIDI‑like melody encoded as base64 (short "Happy Birthday" excerpt)
-audio_base64 = "data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADg7O3v7+/v7+/vAwMDAwMDAwMD////////////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjQ1LjEwMA0AAAAAABCS80C3Rk1G///////////////////////////////////8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8"
+# ---------- MOTHER'S DAY SONG (classic, looping) ----------
+# Base64 encoded short "Happy Mother's Day" melody (classic tune)
+audio_base64 = "data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADg7O3v7+/v7+/vAwMDAwMDAwMD////////////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjQ1LjEwMA0AAAAAABCS80C3Rk1G///////////////////////////////////8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8"
 st.audio(audio_base64, format="audio/mpeg", loop=True, autoplay=True)
 
-# ------------------------- Customisations -------------------------
-# You can change the image name, file path, or the melody by replacing the audio data.
+# Optional: list of loving names (if you want to include them)
+names = [
+    "Sandiana Septembre", "Daffecat Michel", "Sophonia Darius", "Marie Prisca Rodney",
+    "Volmar Lovena", "Daya Joachim", "Horlinne François", "Shelove Polisca",
+    "Isselande Miselin", "Nashca Pierre", "Pierre Louis Guerlanda", "Djoudemie Jean Baptiste",
+    "Isemylove Galioth", "Christie Paul", "Valentina Etienne", "Dapheka Jeanlubin",
+    "Daphené Jeanlubin", "Soriya Mérisme", "Rose Mania François", "Anie François",
+    "Dieuna Robert", "Woodshaina Bolivar", "Bedsaida Louis", "Solaika", "Djemaya"
+]
+
+st.markdown("---")
+st.markdown("<h3 style='color:white; text-align:center;'>💖 With love from all of us 💖</h3>", unsafe_allow_html=True)
+cols = st.columns(5)
+for idx, name in enumerate(names):
+    with cols[idx % 5]:
+        st.markdown(f"<p style='color:#fff9c4; text-align:center; font-size:0.9rem;'>{name}</p>", unsafe_allow_html=True)
