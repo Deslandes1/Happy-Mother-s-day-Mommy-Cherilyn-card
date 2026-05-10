@@ -13,7 +13,6 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Gradient background – deep red/gold, representing strength and love */
     .stApp {
         background: linear-gradient(135deg, #6b0f1a, #b22222, #ffb347, #ffd700);
         background-attachment: fixed;
@@ -99,20 +98,19 @@ st.markdown(
 col_left, col_right = st.columns([1, 1])
 
 with col_left:
-    # Use the direct raw URL of Sebastien's photo
     image_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/main/Sebastien%20Stephane%20Deslandes.jpg"
     try:
         response = requests.get(image_url)
         img = Image.open(BytesIO(response.content))
+        # Rotate image to fix sideways orientation (adjust angle if needed)
+        img = img.rotate(-90, expand=True)   # use 90 or -90
         st.image(img, caption="🎉 Sebastien Stephane Deslandes 🎉", width=350)
     except Exception as e:
         st.error(f"Could not load the image.\n\n{str(e)}")
 
 with col_right:
     st.markdown('<div class="right-header">🎂 From Deslandes Family<br>we wish you a<b> Happy Birthday!</b> 🎂</div>', unsafe_allow_html=True)
-    # List of family members who signed
     signers = ["Gesner Deslandes", "Gesner Junior Deslandes", "Roosevelt Deslandes", "Zendaya Christelle Deslandes"]
-    # Show names in a single column, with a small heart next to each
     st.markdown('<ul class="names-list">', unsafe_allow_html=True)
     for name in signers:
         st.markdown(f'<li>💖 {name}</li>', unsafe_allow_html=True)
@@ -131,9 +129,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------- BACKGROUND MUSIC (hidden, loops 'Happy Birthday') ----------
-# Using a public domain "Happy Birthday" audio track (short, loops beautifully)
-birthday_audio_url = "https://www.kozco.com/tech/LRMonoPhase4.wav"  # placeholder – replace with a reliable, persistent URL if needed
+# ---------- BACKGROUND MUSIC (hidden) ----------
+birthday_audio_url = "https://www.kozco.com/tech/LRMonoPhase4.wav"
 audio_html = f"""
 <audio id="bgMusic" autoplay loop style="display:none;">
     <source src="{birthday_audio_url}" type="audio/wav">
@@ -142,12 +139,11 @@ audio_html = f"""
 <script>
     var audio = document.getElementById('bgMusic');
     audio.volume = 0.4;
-    audio.play().catch(e => console.log("Autoplay prevented. Please click anywhere to start music."));
-    // Optional: enable music after user clicks anywhere
+    audio.play().catch(e => console.log("Autoplay prevented."));
     document.body.addEventListener('click', function() {{
         audio.play().catch(e => console.log("Still blocked."));
     }});
 </script>
 """
 st.markdown(audio_html, unsafe_allow_html=True)
-st.caption("🎵 Soft background music – if it doesn’t play automatically, refresh or click the page.")
+st.caption("🎵 Soft background music – click the page if it doesn't play.")
