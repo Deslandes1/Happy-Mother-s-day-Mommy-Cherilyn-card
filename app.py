@@ -139,14 +139,20 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 # Title
 st.markdown('<div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>', unsafe_allow_html=True)
 
-# --- LOCAL IMAGE FILE (must be in same folder as app.py) ---
-image_filename = "cherylenn.jpeg"
+# --- LOCAL IMAGE FILE (supports multiple possible names) ---
+possible_filenames = ["cherylenn", "cherylenn.jpeg", "cherylenn.jpg", "cherylenn.png"]
 
-if os.path.exists(image_filename):
-    st.image(image_filename, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
+image_file = None
+for fname in possible_filenames:
+    if os.path.exists(fname):
+        image_file = fname
+        break
+
+if image_file:
+    st.image(image_file, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
 else:
-    st.error(f"❌ Image file '{image_filename}' not found. Please upload the picture to the repository.")
-    st.info("Make sure the file name is exactly 'cherylenn.jpeg' (case‑sensitive) and that it is in the same folder as app.py.")
+    st.error("❌ Could not find the image file. Please upload a photo named 'cherylenn' (with or without extension like .jpeg, .jpg, .png) to the same folder as app.py.")
+    st.info("Make sure the file name is exactly as you typed: 'cherylenn' (case‑sensitive).")
 
 # ---------- LIST OF LOVING NAMES ----------
 names = [
