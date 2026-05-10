@@ -138,16 +138,16 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 # Title
 st.markdown('<div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>', unsafe_allow_html=True)
 
-# Image from GitHub URL
-image_url = "https://github.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/blob/main/cherylenn.jpeg?raw=true"
+# --- CORRECTED RAW IMAGE URL ---
+image_raw_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/main/cherylenn.jpeg"
+
+# Display image with proper container width (use `width='stretch'` instead of deprecated `use_container_width`)
 try:
-    st.image(image_url, use_container_width=True)
-    st.markdown('<div class="photo-caption">💖 Mommy Cherilyn – Our Beautiful Queen 💖</div>', unsafe_allow_html=True)
+    st.image(image_raw_url, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
 except Exception as e:
-    st.warning(f"⚠️ Unable to load the image. Please check the URL. Error: {e}")
+    st.warning(f"⚠️ Could not load image. Please verify the raw image URL. Error: {e}")
 
 # ---------- LIST OF LOVING NAMES ----------
-# Names provided by the user
 names = [
     "Sandiana Septembre", "Daffecat Michel", "Sophonia Darius", "Marie Prisca Rodney",
     "Volmar Lovena", "Daya Joachim", "Horlinne François", "Shelove Polisca",
@@ -171,7 +171,6 @@ st.markdown(f"<p style='color:white; font-size:1.2rem;'>📅 {datetime.now().str
 st.markdown("---")
 st.markdown("<h3 style='color:white;'>🎵 Listen to a classic Happy Birthday song 🎵</h3>", unsafe_allow_html=True)
 
-# Audio file: place "happy_birthday_song.mp3" in the same folder
 audio_file = "happy_birthday_song.mp3"
 try:
     with open(audio_file, "rb") as f:
@@ -183,15 +182,14 @@ try:
         Your browser does not support the audio element.
     </audio>
     <script>
-        // Attempt to autoplay; if blocked, user can click play manually
         var audio = document.getElementById('bgMusic');
-        audio.play().catch(e => console.log("Autoplay prevented. Click play to enjoy the music."));
+        audio.play().catch(e => console.log("Autoplay prevented."));
     </script>
     """
     st.markdown(audio_html, unsafe_allow_html=True)
-    st.caption("🎶 If the music doesn't play automatically, click the ▶️ button above. 🎶")
-except Exception as e:
-    st.warning("🎧 Please add a Happy Birthday song file named 'happy_birthday_song.mp3' to this folder (or update the file name in the code).")
+    st.caption("🎶 If the music doesn’t play automatically, click the ▶️ button above. 🎶")
+except Exception:
+    st.warning("🎧 Please add a Happy Birthday song file named 'happy_birthday_song.mp3' to this folder.")
 
 # Extra love note
 st.markdown(
