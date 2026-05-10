@@ -4,7 +4,7 @@ from PIL import Image
 from io import BytesIO
 
 st.set_page_config(
-    page_title="Happy Mother's Day, Mommy Cherylenn!",
+    page_title="Happy Mother's Day, Mommy Cherylann!",
     page_icon="🌸",
     layout="wide"
 )
@@ -61,8 +61,8 @@ st.markdown(
         50% { transform: scale(1.2); }
         100% { transform: scale(1); }
     }
-    /* Hide the audio player controls */
-    .hidden-audio {
+    /* Hide any default audio player */
+    audio {
         display: none;
     }
     </style>
@@ -76,7 +76,7 @@ image_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mom
 try:
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
-    st.image(img, caption="💖 Mommy Cherylenn 💖", width=400)
+    st.image(img, caption="💖 Mommy Cherylann 💖", width=400)
 except Exception as e:
     st.error(f"Could not load the image. Please check the file name or path.\n\n{str(e)}")
 
@@ -84,7 +84,7 @@ except Exception as e:
 st.markdown(
     """
     <div class="card-container">
-        <div class="title">🌸 Happy Mother's Day, Mommy Cherylenn! 🌸</div>
+        <div class="title">🌸 Happy Mother's Day, Mommy Cherylann! 🌸</div>
         <div class="heart">❤️❤️❤️</div>
         <p style="font-size:1.2rem; color:white;">We love you and celebrate you today!</p>
     </div>
@@ -92,16 +92,21 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------- HIDDEN AUTO-PLAY AUDIO (no visible bar) ----------
-# Base64 encoded short "Happy Mother's Day" melody (classic tune)
-audio_base64 = "data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADg7O3v7+/v7+/vAwMDAwMDAwMD////////////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjQ1LjEwMA0AAAAAABCS80C3Rk1G///////////////////////////////////8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8P8"
-audio_html = f"""
-<audio autoplay loop style="display: none;">
-    <source src="{audio_base64}" type="audio/mpeg">
-    Your browser does not support the audio element.
+# ---------- BACKGROUND MUSIC (hidden, no visible bar) ----------
+audio_html = """
+<audio id="bgMusic" autoplay loop style="display:none;">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
+<script>
+    var audio = document.getElementById('bgMusic');
+    audio.volume = 0.5;
+    audio.play().catch(e => console.log("Autoplay prevented."));
+</script>
 """
 st.markdown(audio_html, unsafe_allow_html=True)
+
+# Optional: a small note about music (can be removed)
+st.caption("🎵 Background music playing (if your browser allows autoplay)")
 
 # ---------- LIST OF LOVING NAMES ----------
 names = [
@@ -115,9 +120,7 @@ names = [
 
 st.markdown("---")
 st.markdown("<h3 style='color:white; text-align:center;'>💖 With love from all of us 💖</h3>", unsafe_allow_html=True)
-
-# Display names in a grid (5 columns)
 cols = st.columns(5)
 for idx, name in enumerate(names):
     with cols[idx % 5]:
-        st.markdown(f"<p style='color:#fff9c4; text-align:center; font-size:1rem; margin:0.2rem 0;'>{name}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='color:#fff9c4; text-align:center; font-size:0.9rem;'>{name}</p>", unsafe_allow_html=True)
