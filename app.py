@@ -138,10 +138,9 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 # Title
 st.markdown('<div class="title">🎂 Happy Birthday, Mommy Cherilyn! 🎂</div>', unsafe_allow_html=True)
 
-# --- CORRECTED RAW IMAGE URL ---
+# --- CORRECTED RAW IMAGE URL (direct from GitHub) ---
 image_raw_url = "https://raw.githubusercontent.com/Deslandes1/Happy-Mother-s-day-Mommy-Cherilyn-card/main/cherylenn.jpeg"
 
-# Display image with proper container width (use `width='stretch'` instead of deprecated `use_container_width`)
 try:
     st.image(image_raw_url, caption="💖 Mommy Cherilyn – Our Beautiful Queen 💖", width='stretch')
 except Exception as e:
